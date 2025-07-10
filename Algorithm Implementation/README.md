@@ -1,230 +1,235 @@
-# 📚 Algorithm Implementations
+<div align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&duration=3000&pause=1000&color=4CAF50&center=true&vCenter=true&width=800&lines=📚+AI+Search+Algorithm+Implementations;For+Solving+Pathfinding,+Games+and+Optimization;Built+with+Python+%26+Love+❤️" />
+</div>
 
-This repository contains implementations of popular AI search algorithms.  
-Each folder includes:
-- 🧩 How the algorithm works
-- 🎯 Applications
-- ⏱️ Time and space complexity
-- 📸 Example input & output
+<p align="center">
+  <img src="https://media.giphy.com/media/f3iwJFOVOwuy7K6FFw/giphy.gif" width="350" alt="AI Search Gif"/>
+</p>
+
+<p align="center"> 
+  <img src="https://komarev.com/ghpvc/?username=hrithikd9&label=Repo+views&color=0e75b6&style=flat" alt="Repo Views" /> 
+</p>
 
 ---
 
-## 🔹 A Star (A*)
+# 📚 Algorithm Implementations
+
+This repository contains implementations of popular AI search algorithms for solving problems like pathfinding, decision making in games, and heuristic optimizations.
+
+---
+
+## 📦 What's Inside:
+- 🧩 **How the algorithm works**
+- 🎯 **Applications**
+- ⏱️ **Time & Space Complexity**
+- 📸 **Example Input & Output screenshots**
+
+---
+
+## 📌 Algorithms Covered
+
+### 🔹 A Star (A*)
 
 **How it works:**  
-A* search combines the advantages of Dijkstra’s Algorithm and Best-First Search. It uses `f(n) = g(n) + h(n)` where:  
-- `g(n)` = cost from start to current node  
-- `h(n)` = heuristic estimate to goal
+A* search combines Dijkstra and Best-First by using `f(n) = g(n) + h(n)`:
+- `g(n)` → cost from start to current node
+- `h(n)` → estimated cost to goal
 
 **Applications:**  
-- GPS navigation systems  
-- Robot path planning  
-- Puzzle solving (like 8-puzzle)
+- 🚗 GPS navigation  
+- 🤖 Robot path planning  
+- 🧩 Puzzle solving  
 
 **Complexity:**  
 - Time: `O(b^d)`  
-- Space: `O(b^d)`  
-  *`b` = branching factor, `d` = depth of solution*
+- Space: `O(b^d)`
 
-**Input & Output:**  
+**Example:**  
 ![A* Input](images/a_star_input.png)  
 ![A* Output](images/a_star_output.png)
 
 ---
 
-## 🔹 Alpha-Beta
+### 🔹 Alpha-Beta Pruning
 
 **How it works:**  
-Alpha-Beta pruning improves the Minimax algorithm by eliminating branches that won’t affect the final decision.
+Optimizes Minimax by pruning branches that can’t affect final decision.
 
 **Applications:**  
-- AI in two-player games (Chess, Tic Tac Toe)
+- ♟️ AI in two-player games
 
 **Complexity:**  
-- Time: `O(b^(m/2))` with perfect ordering  
-- Space: `O(bm)`  
-  *`b` = branching factor, `m` = maximum depth*
+- Time: `O(b^(m/2))` (best case)  
+- Space: `O(bm)`
 
-**Input & Output:**  
+**Example:**  
 ![Alpha Beta Input](images/alpha_beta_input.png)  
 ![Alpha Beta Output](images/alpha_beta_output.png)
 
 ---
 
-## 🔹 AO* (And-Or Star)
+### 🔹 AO* (And-Or Star)
 
 **How it works:**  
-AO* is used for problems with AND/OR graphs. It expands nodes and backtracks to find minimal-cost solutions considering both AND and OR branches.
+For problems with AND/OR graphs, finds minimal cost considering both.
 
 **Applications:**  
-- Game trees with multiple possible strategies  
-- Problem reduction  
-- Planning systems
+- 🕹️ Game trees  
+- 📈 Planning systems  
 
 **Complexity:**  
-- Time: Exponential in worst case  
-- Space: Proportional to number of nodes expanded
+- Time: Exponential (worst)  
+- Space: Depends on expanded nodes
 
-**Input & Output:**  
+**Example:**  
 ![AO Star Input](images/ao_star_input.png)  
 ![AO Star Output](images/ao_star_output.png)
 
 ---
 
-## 🔹 Beam Search
+### 🔹 Beam Search
 
 **How it works:**  
-Beam Search is a heuristic search that explores a graph by expanding only a limited number of best nodes at each level.
+Heuristic search limiting to best `k` nodes at each level.
 
 **Applications:**  
-- Speech recognition  
-- Machine translation  
-- Scheduling
+- 🗣️ Speech recognition  
+- 🌐 Machine translation  
 
 **Complexity:**  
-- Time: `O(b^k)` (where `k` is beam width)  
-- Space: `O(b^k)`
+- Time & Space: `O(b^k)`
 
-**Input & Output:**  
-![Beam Search Input](images/beam_input.png)  
-![Beam Search Output](images/beam_output.png)
+**Example:**  
+![Beam Input](images/beam_input.png)  
+![Beam Output](images/beam_output.png)
 
 ---
 
-## 🔹 Best First Search
+### 🔹 Best First Search
 
 **How it works:**  
-Best First Search selects the next node with the lowest heuristic cost (`h(n)`). It’s greedy — always expanding the most promising node.
+Greedy — expands node with lowest `h(n)`.
 
 **Applications:**  
-- Pathfinding  
-- Network routing
+- 📍 Pathfinding  
+- 🌐 Network routing  
 
 **Complexity:**  
-- Time: `O(b^m)`  
-- Space: `O(b^m)`  
-  *`b` = branching factor, `m` = maximum depth*
+- Time & Space: `O(b^m)`
 
-**Input & Output:**  
+**Example:**  
 ![Best First Input](images/best_first_input.png)  
 ![Best First Output](images/best_first_output.png)
 
 ---
 
-## 🔹 BFS (Breadth-First Search)
+### 🔹 BFS (Breadth-First Search)
 
 **How it works:**  
-BFS explores all nodes at the current depth before moving to the next level. It guarantees the shortest path in unweighted graphs.
+Explores all nodes at a depth before moving deeper. Guarantees shortest path in unweighted graphs.
 
 **Applications:**  
-- Shortest path in unweighted graphs  
-- Web crawlers  
-- Peer-to-peer networks
+- 📡 Web crawlers  
+- 🔗 Peer-to-peer networks  
 
 **Complexity:**  
 - Time: `O(V + E)`  
 - Space: `O(V)`
 
-**Input & Output:**  
+**Example:**  
 ![BFS Input](images/bfs_input.png)  
 ![BFS Output](images/bfs_output.png)
 
 ---
 
-## 🔹 Bidirectional Search
+### 🔹 Bidirectional Search
 
 **How it works:**  
-Runs two simultaneous searches — one forward from the start, one backward from the goal — stopping when they meet.
+Two simultaneous searches — one from start, one from goal — stop when they meet.
 
 **Applications:**  
-- Pathfinding in road maps  
-- Shortest path in large graphs
+- 🗺️ Road maps  
+- 🚥 Large graph shortest paths  
 
 **Complexity:**  
-- Time: `O(b^(d/2))`  
-- Space: `O(b^(d/2))`
+- Time & Space: `O(b^(d/2))`
 
-**Input & Output:**  
+**Example:**  
 ![Bidirectional Input](images/bidirectional_input.png)  
 ![Bidirectional Output](images/bidirectional_output.png)
 
 ---
 
-## 🔹 DFS (Depth-First Search)
+### 🔹 DFS (Depth-First Search)
 
 **How it works:**  
-DFS explores as far as possible along each branch before backtracking.
+Explores as deep as possible along a branch before backtracking.
 
 **Applications:**  
-- Solving mazes  
-- Topological sorting  
-- Cycle detection
+- 🧭 Maze solving  
+- 🔄 Cycle detection  
 
 **Complexity:**  
 - Time: `O(V + E)`  
 - Space: `O(V)`
 
-**Input & Output:**  
+**Example:**  
 ![DFS Input](images/dfs_input.png)  
 ![DFS Output](images/dfs_output.png)
 
 ---
 
-## 🔹 Heuristic Search
+### 🔹 Heuristic Search
 
 **How it works:**  
-Uses domain-specific knowledge to estimate which path is likely to lead to a solution faster.
+Uses domain knowledge to pick promising paths.
 
 **Applications:**  
-- Game AI  
-- Route finding  
-- Expert systems
+- 🎮 Game AI  
+- 📍 Route optimization  
 
 **Complexity:**  
-- Depends on the heuristic used  
-- Can dramatically reduce time compared to blind search
+- Time/Space depends on heuristic
 
-**Input & Output:**  
+**Example:**  
 ![Heuristic Input](images/heuristic_input.png)  
 ![Heuristic Output](images/heuristic_output.png)
 
 ---
 
-## 🔹 Hill Climbing
+### 🔹 Hill Climbing
 
 **How it works:**  
-Starts with an arbitrary solution and iteratively makes small changes that improve it. Stops when no further improvements can be found.
+Starts with a random solution, iteratively improves until no better option.
 
 **Applications:**  
-- Function optimization  
-- Machine learning parameter tuning  
-- Robotics
+- 📈 Function optimization  
+- 🤖 ML parameter tuning  
 
 **Complexity:**  
-- Time: Depends on problem  
+- Time: Problem-dependent  
 - Space: Linear
 
-**Input & Output:**  
+**Example:**  
 ![Hill Climb Input](images/hill_climb_input.png)  
 ![Hill Climb Output](images/hill_climb_output.png)
 
 ---
 
-## 🔹 Minimax
+### 🔹 Minimax
 
 **How it works:**  
-Used for decision making in zero-sum games. It simulates all possible moves to find the optimal strategy assuming the opponent plays optimally too.
+Simulates all possible moves in a zero-sum game to find optimal strategy assuming perfect play.
 
 **Applications:**  
-- Chess  
-- Tic Tac Toe  
-- Connect Four
+- ♟️ Chess  
+- ⭕❌ Tic Tac Toe  
 
 **Complexity:**  
 - Time: `O(b^m)`  
 - Space: `O(bm)`
 
-**Input & Output:**  
+**Example:**  
 ![Minimax Input](images/minimax_input.png)  
 ![Minimax Output](images/minimax_output.png)
 
@@ -232,10 +237,11 @@ Used for decision making in zero-sum games. It simulates all possible moves to f
 
 ## 📌 Notes
 
-📂 **Replace image paths:**  
-Put your input/output screenshots in an `images/` folder inside your repo.  
-Update the file names as needed.
+📂 **Ensure your input/output screenshots are inside an `images/` folder.**  
+Use consistent naming like `a_star_input.png`, `a_star_output.png`, etc.
 
 ---
 
-✅ **Made with ❤️ for AI learners**
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&duration=3000&pause=1000&color=FF6B6B&center=true&vCenter=true&width=700&lines=Made+with+%E2%9D%A4%EF%B8%8F+for+AI+learners+%26+students+by+Hrithik" />
+</p>
