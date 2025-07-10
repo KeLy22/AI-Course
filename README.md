@@ -1,12 +1,12 @@
 <div align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Architects+Daughter&color=4CAF50&size=40&center=true&vCenter=true&width=800&height=100&lines=Artificial+Intelligence+(AI)+Course+Overview;By+Tanjina+Akter+%F0%9F%91%8B;January+-+June+2025" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=Architects+Daughter&color=4CAF50&size=40&center=true&vCenter=true&width=800&height=100&lines=Artificial+Intelligence+(AI)+Course+Overview;By+Kely+%F0%9F%91%8B;January+-+June+2025" />
 </div>
 
 <p align="center">
   <img src="https://media1.giphy.com/media/L8K62iTDkzGX6/giphy.gif" width="400" alt="AI Illustration"/>
 </p>
 
-<p align="center"> <img src="https://komarev.com/ghpvc/?username=hrithikd9&label=Course+Page+views&color=4CAF50&style=flat" alt="Course Views" /> </p>
+<p align="center"> <img src="https://komarev.com/ghpvc/?username=KeLy22&label=Course+Page+views&color=4CAF50&style=flat" alt="Course Views" /> </p>
 
 ---
 
@@ -74,7 +74,7 @@ The purpose of this course was to help us understand how AI works and how to app
 
 ---
 
-## 🙏 Acknowledgements
+## Supervised By :
 
 Thanks to **Razorshi Prozzal Talukder** for his guidance and support throughout the course. His teaching made learning AI fun and practical.
 
