@@ -65,16 +65,6 @@ Graph structure:
 BFS Path from 0 to 5: 0 1 3 5
 ```
 
-### 🖼 Example Screenshots
-
-**➡️ Input:**
-![Input Screenshot](https://i.imgur.com/fvwdrKk.png)
-
-**✅ Output:**
-![Output Screenshot](https://i.imgur.com/0quF1a1.png)
-
----
-
 ## 🚀 Applications of BFS
 
 | Domain               | Use Case                                            |

@@ -65,16 +65,6 @@ Graph structure:
 DFS Path from 0 to 5: 0 2 4 5
 ```
 
-### 🖼 Screenshots
-
-**➡️ Input Example:**
-![Input Screenshot](https://i.imgur.com/Tu5eqEd.png)
-
-**✅ Output Example:**
-![Output Screenshot](https://i.imgur.com/71eDh2E.png)
-
----
-
 ## 🚀 Applications of DFS
 
 | Domain                      | Use Case                                |

@@ -51,16 +51,6 @@ Enter start and goal: 0 5
 Path found (meeting point at 3 or 5)
 ```
 
-### 🖼 Example Screenshots
-
-**➡️ Input View:**
-![Input Screenshot](https://i.imgur.com/NKOdx9h.png)
-
-**✅ Output View:**
-![Output Screenshot](https://i.imgur.com/WrdbRzK.png)
-
----
-
 ## 🚀 Applications
 
 | Domain              | Use Case                                                     |

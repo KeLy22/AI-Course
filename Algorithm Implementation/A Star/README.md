@@ -67,17 +67,6 @@ Enter goal node: 4
 A* Path from 1 to 4: 1 2 3 4
 ```
 
-### 🖼 Example Screenshots:
-
-**➡️ Input Example:**
-
-![Input Screenshot](https://i.imgur.com/Tej2Jtp.png)
-
-**✅ Output Example:**
-
-![Output Screenshot](https://i.imgur.com/dZYFgj2.png)
-
----
 
 ## 🚀 Applications of A\* Algorithm
 

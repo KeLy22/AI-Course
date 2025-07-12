@@ -57,18 +57,6 @@ Enter start, goal, and beam width: 0 6 2
 Goal found at node 6
 ```
 
-### 🖼 Example Screenshots
-
-**➡️ Input Example:**
-
-![Input Screenshot](https://i.imgur.com/eUO6ASt.png)
-
-**✅ Output Example:**
-
-![Output Screenshot](https://i.imgur.com/Obj43R6.png)
-
----
-
 ## 🚀 Applications of Beam Search
 
 | Domain                          | Use Case                                                             |

@@ -55,18 +55,6 @@ Current: 4 with h=0
 Reached peak at node: 4
 ```
 
-### 🖼 Example Screenshots
-
-**➡️ Input Example:**
-
-![Input Screenshot](https://i.imgur.com/3D6Yj7I.png)
-
-**✅ Output Example:**
-
-![Output Screenshot](https://i.imgur.com/ZbPWeTx.png)
-
----
-
 ## 🚀 Applications
 
 | Field                   | Use Case                                             |
