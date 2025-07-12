@@ -74,12 +74,6 @@ The purpose of this course was to help us understand how AI works and how to app
 
 ---
 
-## Supervised By :
+## Supervised By : **Razorshi Prozzal Talukder**
 
 Thanks to **Razorshi Prozzal Talukder** for his guidance and support throughout the course. His teaching made learning AI fun and practical.
-
----
-
-<p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&duration=3000&pause=1000&color=FF6B6B&center=true&vCenter=true&width=700&lines=Made+with+%E2%9D%A4%EF%B8%8F+using+AI+and+creativity" />
-</p>

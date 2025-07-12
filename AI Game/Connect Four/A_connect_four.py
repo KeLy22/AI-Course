@@ -1,133 +1,218 @@
 import random
+import math
 
-print("Welcome to Connect Four")
-print("-----------------------")
+# Game configuration constants
+ROWS = 6
+COLUMNS = 7
+EMPTY = " "
+PLAYER_PIECE = "X"
+COMPUTER_PIECE = "O"
 
-possibleLetters = ["A","B","C","D","E","F","G"]
-gameBoard = [["","","","","","",""], ["","","","","","",""], ["","","","","","",""], ["","","","","","",""], ["","","","","","",""], ["","","","","","",""]]
+# Create the game board as a 2D list
+def create_board():
+    return [[EMPTY for _ in range(COLUMNS)] for _ in range(ROWS)]
 
-rows = 6
-cols = 7
+# Print the current state of the board
+def print_board(board):
+    for row in board:
+        print("|" + "|".join(row) + "|")
+    print(" " + " ".join(str(i) for i in range(COLUMNS)))
 
-def printGameBoard():
-  print("\n     A    B    C    D    E    F    G  ", end="")
-  for x in range(rows):
-    print("\n   +----+----+----+----+----+----+----+")
-    print(x, " |", end="")
-    for y in range(cols):
-      if(gameBoard[x][y] == "🔵"):
-        print("",gameBoard[x][y], end=" |")
-      elif(gameBoard[x][y] == "🔴"):
-        print("", gameBoard[x][y], end=" |")
-      else:
-        print(" ", gameBoard[x][y], end="  |")
-  print("\n   +----+----+----+----+----+----+----+")
+# Check if the top of the column is empty
+def is_valid_location(board, col):
+    return board[0][col] == EMPTY
 
-def modifyArray(spacePicked, turn):
-  gameBoard[spacePicked[0]][spacePicked[1]] = turn
+# Get the next available row in a column from bottom up
+def get_next_open_row(board, col):
+    for r in range(ROWS - 1, -1, -1):
+        if board[r][col] == EMPTY:
+            return r
+    return None
 
-def checkForWinner(chip):
-  ### Check horizontal spaces
-  for y in range(rows):
-    for x in range(cols - 3):
-      if gameBoard[x][y] == chip and gameBoard[x+1][y] == chip and gameBoard[x+2][y] == chip and gameBoard[x+3][y] == chip:
-        print("\nGame over", chip, "wins! Thank you for playing :)")
-        return True
+# Place the player's or computer's piece in the board
+def drop_piece(board, row, col, piece):
+    board[row][col] = piece
 
-  ### Check vertical spaces
-  for x in range(rows):
-    for y in range(cols - 3):
-      if gameBoard[x][y] == chip and gameBoard[x][y+1] == chip and gameBoard[x][y+2] == chip and gameBoard[x][y+3] == chip:
-        print("\nGame over", chip, "wins! Thank you for playing :)")
-        return True
+# Check all winning possibilities for a piece
+def winning_move(board, piece):
+    # Horizontal win
+    for c in range(COLUMNS - 3):
+        for r in range(ROWS):
+            if all(board[r][c+i] == piece for i in range(4)):
+                return True
 
-  ### Check upper right to bottom left diagonal spaces
-  for x in range(rows - 3):
-    for y in range(3, cols):
-      if gameBoard[x][y] == chip and gameBoard[x+1][y-1] == chip and gameBoard[x+2][y-2] == chip and gameBoard[x+3][y-3] == chip:
-        print("\nGame over", chip, "wins! Thank you for playing :)")
-        return True
+    # Vertical win
+    for c in range(COLUMNS):
+        for r in range(ROWS - 3):
+            if all(board[r+i][c] == piece for i in range(4)):
+                return True
 
-  ### Check upper left to bottom right diagonal spaces
-  for x in range(rows - 3):
-    for y in range(cols - 3):
-      if gameBoard[x][y] == chip and gameBoard[x+1][y+1] == chip and gameBoard[x+2][y+2] == chip and gameBoard[x+3][y+3] == chip:
-        print("\nGame over", chip, "wins! Thank you for playing :)")
-        return True
-  return False
+    # Positive diagonal win
+    for c in range(COLUMNS - 3):
+        for r in range(ROWS - 3):
+            if all(board[r+i][c+i] == piece for i in range(4)):
+                return True
 
-def coordinateParser(inputString):
-  coordinate = [None] * 2
-  if(inputString[0] == "A"):
-    coordinate[1] = 0
-  elif(inputString[0] == "B"):
-    coordinate[1] = 1
-  elif(inputString[0] == "C"):
-    coordinate[1] = 2
-  elif(inputString[0] == "D"):
-    coordinate[1] = 3
-  elif(inputString[0] == "E"):
-    coordinate[1] = 4
-  elif(inputString[0] == "F"):
-    coordinate[1] = 5
-  elif(inputString[0] == "G"):
-    coordinate[1] = 6
-  else:
-    print("Invalid")
-  coordinate[0] = int(inputString[1])
-  return coordinate
+    # Negative diagonal win
+    for c in range(COLUMNS - 3):
+        for r in range(3, ROWS):
+            if all(board[r-i][c+i] == piece for i in range(4)):
+                return True
 
-def isSpaceAvailable(intendedCoordinate):
-  if(gameBoard[intendedCoordinate[0]][intendedCoordinate[1]] == '🔴'):
     return False
-  elif(gameBoard[intendedCoordinate[0]][intendedCoordinate[1]] == '🔵'):
-    return False
-  else:
-    return True
 
-def gravityChecker(intendedCoordinate):
-  ### Calculate space below
-  spaceBelow = [None] * 2
-  spaceBelow[0] = intendedCoordinate[0] + 1
-  spaceBelow[1] = intendedCoordinate[1]
-  ### Is the coordinate at ground level
-  if(spaceBelow[0] == 6):
-    return True
-  ### Check if there's a token below
-  if(isSpaceAvailable(spaceBelow) == False):
-    return True
-  return False
+# Return a list of columns where a piece can still be dropped
+def get_valid_locations(board):
+    return [col for col in range(COLUMNS) if is_valid_location(board, col)]
 
-leaveLoop = False
-turnCounter = 0
-while(leaveLoop == False):
-  if(turnCounter % 2 == 0):
-    printGameBoard()
-    while True:
-      spacePicked = input("\nChoose a space: ")
-      coordinate = coordinateParser(spacePicked)
-      try:
-        ### Check if the space is available
-        if(isSpaceAvailable(coordinate) and gravityChecker(coordinate)):
-          modifyArray(coordinate, '🔵')
-          break
+# Evaluate the usefulness of a 4-piece window
+def evaluate_window(window, piece):
+    score = 0
+    opp_piece = PLAYER_PIECE if piece == COMPUTER_PIECE else COMPUTER_PIECE
+
+    if window.count(piece) == 4:
+        score += 100
+    elif window.count(piece) == 3 and window.count(EMPTY) == 1:
+        score += 10
+    elif window.count(piece) == 2 and window.count(EMPTY) == 2:
+        score += 5
+
+    if window.count(opp_piece) == 3 and window.count(EMPTY) == 1:
+        score -= 80
+
+    return score
+
+# Score the board for the given player to help the AI decide moves
+def score_position(board, piece):
+    score = 0
+
+    # Score center column higher
+    center_array = [board[r][COLUMNS // 2] for r in range(ROWS)]
+    score += center_array.count(piece) * 6
+
+    # Score horizontal windows
+    for r in range(ROWS):
+        row_array = [board[r][c] for c in range(COLUMNS)]
+        for c in range(COLUMNS - 3):
+            window = row_array[c:c + 4]
+            score += evaluate_window(window, piece)
+
+    # Score vertical windows
+    for c in range(COLUMNS):
+        col_array = [board[r][c] for r in range(ROWS)]
+        for r in range(ROWS - 3):
+            window = col_array[r:r + 4]
+            score += evaluate_window(window, piece)
+
+    # Score positive diagonals
+    for r in range(ROWS - 3):
+        for c in range(COLUMNS - 3):
+            window = [board[r + i][c + i] for i in range(4)]
+            score += evaluate_window(window, piece)
+
+    # Score negative diagonals
+    for r in range(3, ROWS):
+        for c in range(COLUMNS - 3):
+            window = [board[r - i][c + i] for i in range(4)]
+            score += evaluate_window(window, piece)
+
+    return score
+
+# Check whether the game has ended
+def is_terminal_node(board):
+    return winning_move(board, PLAYER_PIECE) or winning_move(board, COMPUTER_PIECE) or len(get_valid_locations(board)) == 0
+
+# Minimax algorithm with alpha-beta pruning
+def minimax(board, depth, alpha, beta, maximizingPlayer):
+    valid_locations = get_valid_locations(board)
+    is_terminal = is_terminal_node(board)
+
+    if depth == 0 or is_terminal:
+        if is_terminal:
+            if winning_move(board, COMPUTER_PIECE):
+                return (None, 100000000000000)
+            elif winning_move(board, PLAYER_PIECE):
+                return (None, -10000000000000)
+            else:
+                return (None, 0)
         else:
-          print("Not a valid coordinate")
-      except:
-        print("Error occured. Please try again.")
-    winner = checkForWinner('🔵')
-    turnCounter += 1
-  ### It's the computers turn
-  else:
-    while True:
-      cpuChoice = [random.choice(possibleLetters), random.randint(0,5)]
-      cpuCoordinate = coordinateParser(cpuChoice)
-      if(isSpaceAvailable(cpuCoordinate) and gravityChecker(cpuCoordinate)):
-        modifyArray(cpuCoordinate, '🔴')
-        break
-    turnCounter += 1
-    winner = checkForWinner('🔴')
+            return (None, score_position(board, COMPUTER_PIECE))
 
-  if(winner):
-    printGameBoard()
-    break
+    if maximizingPlayer:
+        value = -math.inf
+        best_col = random.choice(valid_locations)
+        for col in valid_locations:
+            row = get_next_open_row(board, col)
+            temp_board = [r[:] for r in board]  # Make a deep copy of the board
+            drop_piece(temp_board, row, col, COMPUTER_PIECE)
+            new_score = minimax(temp_board, depth - 1, alpha, beta, False)[1]
+            if new_score > value:
+                value = new_score
+                best_col = col
+            alpha = max(alpha, value)
+            if alpha >= beta:
+                break
+        return best_col, value
+    else:
+        value = math.inf
+        best_col = random.choice(valid_locations)
+        for col in valid_locations:
+            row = get_next_open_row(board, col)
+            temp_board = [r[:] for r in board]
+            drop_piece(temp_board, row, col, PLAYER_PIECE)
+            new_score = minimax(temp_board, depth - 1, alpha, beta, True)[1]
+            if new_score < value:
+                value = new_score
+                best_col = col
+            beta = min(beta, value)
+            if alpha >= beta:
+                break
+        return best_col, value
+
+# Get the best move for the computer using minimax
+def get_computer_move(board):
+    col, _ = minimax(board, 4, -math.inf, math.inf, True)
+    return col
+
+# Main game loop
+def play_game():
+    board = create_board()
+    print_board(board)
+    game_over = False
+    turn = 0  # 0 = player, 1 = computer
+
+    while not game_over:
+        if turn % 2 == 0:
+            # Player turn
+            col = int(input("Player 1 Make your Selection (0-6): "))
+            if is_valid_location(board, col):
+                row = get_next_open_row(board, col)
+                drop_piece(board, row, col, PLAYER_PIECE)
+
+                if winning_move(board, PLAYER_PIECE):
+                    print_board(board)
+                    print("PLAYER 1 WINS!!")
+                    game_over = True
+        else:
+            # Computer (AI) turn
+            col = get_computer_move(board)
+            if is_valid_location(board, col):
+                row = get_next_open_row(board, col)
+                drop_piece(board, row, col, COMPUTER_PIECE)
+
+                if winning_move(board, COMPUTER_PIECE):
+                    print_board(board)
+                    print("COMPUTER WINS!!")
+                    game_over = True
+
+        print_board(board)
+
+        # Check for draw
+        if len(get_valid_locations(board)) == 0 and not game_over:
+            print("GAME ENDS IN A DRAW!")
+            game_over = True
+
+        turn += 1
+
+# Start the game
+play_game()
