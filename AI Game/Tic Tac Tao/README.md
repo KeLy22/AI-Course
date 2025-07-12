@@ -4,6 +4,10 @@ This is a classic Tic-Tac-Toe game implemented in Python using the `tkinter` GUI
 
 ---
 
+<p align="center">
+  <img src="./picture/tictactao.png" width="500" alt="tic-tac-toe Gameplay Screenshot">
+</p>
+
 ## 📦 Requirements
 
 Before running the game, make sure you have Python installed on your system.
