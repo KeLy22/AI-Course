@@ -73,14 +73,13 @@ Key properties:
 /your-project-folder
 |-- tic_tac_toe.py
 |-- README.md
-|-- screenshots/
-    |-- gameplay1.png
-    |-- gameplay2.png
+|-- picture/
+    |-- gameplay.png
 ```
 
 
 ```markdown
-![Gameplay 1](picture/tictactao.png)
+![Gameplay 1](./picture/tictactao.png)
 ```
 
 ---
