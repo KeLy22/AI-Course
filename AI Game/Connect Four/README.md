@@ -79,7 +79,7 @@ The AI in this game is powered by:
 
 ---
 
-## 🖼️ Screenshots
+## 🖼️ Here is the some sample idea of game :
 
 ### 🧱 Initial Empty Board
 
