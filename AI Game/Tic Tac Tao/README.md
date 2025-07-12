@@ -63,21 +63,24 @@ Key properties:
 
 ---
 
+## 🖼️ Screenshots
 
-**file structure:**
+> 🧩 *You can take screenshots of the game running and place them in your project folder.*
+
+**Suggested file structure:**
 
 ```
 /your-project-folder
 |-- tic_tac_toe.py
 |-- README.md
-|-- picture/
-    |-- gameplay.png
+|-- screenshots/
+    |-- gameplay1.png
+    |-- gameplay2.png
 ```
 
-To add screenshots in your `README.md`:
 
 ```markdown
-![Gameplay](/AI%20Game/Tic%20Tac%20Tao/picture/tictactao.png)
+![Gameplay 1](picture/tictactao.png)
 ```
 
 ---
