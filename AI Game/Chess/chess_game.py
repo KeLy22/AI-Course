@@ -2,6 +2,7 @@ import pygame
 import chess
 import random
 import sys
+import os
 from pygame.locals import *
 
 # Initialize pygame
@@ -33,15 +34,18 @@ pieces = ['p', 'r', 'n', 'b', 'q', 'k']
 colors = ['w', 'b']
 
 def load_pieces():
+    base_path = os.path.dirname(os.path.abspath(__file__))  # Get current script directory
+    image_path = os.path.join(base_path, 'image')           # Path to image folder
+
     for color in colors:
         for piece in pieces:
             key = color + piece
+            file_path = os.path.join(image_path, f"{key}.png")
             try:
-                image = pygame.image.load(f'image/{key}.png')
-
+                image = pygame.image.load(file_path)
                 piece_images[key] = pygame.transform.smoothscale(image, (SQUARE_SIZE, SQUARE_SIZE))
             except:
-                print(f"Missing image: {key}.png")
+                print(f"Missing image: {file_path}")
                 piece_images[key] = None
 
 load_pieces()
@@ -63,14 +67,12 @@ class ChessGame:
                                                  MARGIN + row * SQUARE_SIZE,
                                                  SQUARE_SIZE, SQUARE_SIZE))
 
-        # Highlight selected square
         if self.selected_square is not None:
             row, col = 7 - self.selected_square // 8, self.selected_square % 8
             highlight_surface = pygame.Surface((SQUARE_SIZE, SQUARE_SIZE), pygame.SRCALPHA)
             highlight_surface.fill(HIGHLIGHT)
             screen.blit(highlight_surface, (MARGIN + col * SQUARE_SIZE, MARGIN + row * SQUARE_SIZE))
 
-        # Highlight legal moves
         for move in self.legal_moves:
             to_square = move.to_square
             row, col = 7 - to_square // 8, to_square % 8
@@ -78,7 +80,6 @@ class ChessGame:
             highlight_surface.fill(LEGAL_MOVE)
             screen.blit(highlight_surface, (MARGIN + col * SQUARE_SIZE, MARGIN + row * SQUARE_SIZE))
 
-        # Draw pieces
         for square in chess.SQUARES:
             piece = self.board.piece_at(square)
             if piece:
@@ -88,12 +89,10 @@ class ChessGame:
                 if image:
                     screen.blit(image, (MARGIN + col * SQUARE_SIZE, MARGIN + row * SQUARE_SIZE))
 
-        # Message
         if self.message:
             text = self.font.render(self.message, True, BLACK)
             screen.blit(text, (20, HEIGHT - 30))
 
-        # Turn indicator
         turn_text = "White's turn" if self.board.turn == chess.WHITE else "Black's turn"
         turn_color = WHITE if self.board.turn == chess.WHITE else BLACK
         text = self.font.render(turn_text, True, turn_color)
@@ -115,7 +114,6 @@ class ChessGame:
 
             if self.selected_square is not None:
                 move = chess.Move(self.selected_square, square)
-                # Handle promotion
                 piece = self.board.piece_at(self.selected_square)
                 if piece and piece.piece_type == chess.PAWN and (square // 8 == 0 or square // 8 == 7):
                     move = chess.Move(self.selected_square, square, promotion=chess.QUEEN)
@@ -127,7 +125,6 @@ class ChessGame:
                     if not self.board.is_game_over() and self.board.turn == chess.BLACK:
                         self.computer_move()
                 else:
-                    # Clicked another piece of same side
                     piece = self.board.piece_at(square)
                     if piece and piece.color == self.board.turn:
                         self.selected_square = square
@@ -147,7 +144,6 @@ class ChessGame:
         pygame.time.delay(500)
 
         legal_moves = list(self.board.legal_moves)
-        # Prefer captures or checks
         captures = [m for m in legal_moves if self.board.is_capture(m)]
         checks = [m for m in legal_moves if self.board.gives_check(m)]
 
