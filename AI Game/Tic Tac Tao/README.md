@@ -70,22 +70,6 @@ This guarantees the computer will **never lose**.
 
 ---
 
-## 🖼️ Screenshots
-
-### 🏁 Game Start:
-
-![Start](https://via.placeholder.com/300x300.png?text=Tic-Tac-Toe+Start)
-
-### 🎉 Player Wins:
-
-![Player Wins](https://via.placeholder.com/300x300.png?text=You+Win!)
-
-### 🤖 Computer Wins:
-
-![Computer Wins](https://via.placeholder.com/300x300.png?text=Computer+Wins!)
-
----
-
 ## 📁 File Structure
 
 ```

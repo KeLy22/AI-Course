@@ -79,52 +79,6 @@ The AI in this game is powered by:
 
 ---
 
-## 🖼️ Here is the some sample idea of game :
-
-### 🧱 Initial Empty Board
-
-```
-| | | | | | | |
-| | | | | | | |
-| | | | | | | |
-| | | | | | | |
-| | | | | | | |
-| | | | | | | |
- 0 1 2 3 4 5 6
-```
-
-### ✅ Player Move Example
-
-```
-| | | | | | | |
-| | | | | | | |
-| | | | | | | |
-| | | | | | | |
-| | | | | | | |
-|X| | | | | | |
- 0 1 2 3 4 5 6
-```
-
-### 🤖 Computer Move Example
-
-```
-| | | | | | | |
-| | | | | | | |
-| | | | | | | |
-| | | | | | | |
-| | | | | | | |
-|X|O| | | | | |
- 0 1 2 3 4 5 6
-```
-
-### 🏆 Win Message
-
-```
-PLAYER 1 WINS!!
-```
-
----
-
 ## 🧑‍💻 Project Structure
 
 ```
